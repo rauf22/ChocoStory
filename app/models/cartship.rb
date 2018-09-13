@@ -1,0 +1,2 @@
+class Cartship < ApplicationRecord
+end
