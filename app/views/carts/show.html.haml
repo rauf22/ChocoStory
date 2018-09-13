@@ -1,0 +1,15 @@
+%table.table
+	%tr
+		%th Product Name
+		%th Quantity
+		%th Price
+		%th Total
+	- @cart.cartships.each do |cartship|
+		%tr
+			%td= cartship.product.title
+			%td= cartship.quantity
+			%td= number_to_currency(cartship.product.price)
+			%td= number_to_currency(cartship.product.price * cartship.quantity)
+	%tr
+		%td{colspan: 3} Total
+		%td= number_to_currency(@cart.total_price)
