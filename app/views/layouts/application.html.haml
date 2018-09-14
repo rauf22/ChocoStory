@@ -8,11 +8,21 @@
     %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
 
   %body{class: params[:controller].gsub("/", "-")}
+    %header{style: "max-height: 100px;"}
+      = link_to root_path do
+        = image_tag "fordmondeo.jpg", style: "height: 100px;margin-left: 20px; margin-top: 10px;"
+      .pull-right{style: "margin-right: 25px; margin-top: 40px;"}
+        - if @cart.present?
+          =link_to "Cart (#{number_to_currency @cart.total_price})", @cart, class: "btn btn-info"
 
-    .container-fluid.margin-top-100
+    .container-fluid{style: "margin-top: 15px;"}
       = yield
 
       %script{type: "text/javascript", 'data-turbolinks-eval'=>false}
         var string = "#{(j (yield :scripts))}";
         eval(string);
         window.starterkitrails.shared.init();
+  .container-fluid
+  - flash.each do |key, value|
+    %div{:class => "#{flash_class(key)}"}
+      = value

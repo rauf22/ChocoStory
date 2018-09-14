@@ -13,3 +13,9 @@
 	%tr
 		%td{colspan: 3} Total
 		%td= number_to_currency(@cart.total_price)
+.pull-right
+	= form_tag pay_cart_path(@cart), method: :post do
+		%script{src: "https://checkout.stripe.com/checkout.js", class: "stripe-button", 
+			data: {key: "pk_test_Id3aEnYgAsMk0FyMoXdS256e", amount: @cart.total_price * 100, 
+			name: "Chocolate University", description: "Chocolate Order", image: image_path("fordmondeo.jpg"), 
+			locale: "auto"}}

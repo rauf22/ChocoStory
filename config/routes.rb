@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'products#index'
   resources :posts
-  resources :carts
+  resources :carts do
+    member do
+      post :pay
+    end
+  end
   resources :products do
     member do
       get :add_to_cart
